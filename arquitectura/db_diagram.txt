@@ -1,0 +1,60 @@
+Table city {
+  id int [pk]
+  city text
+}
+
+Table results {
+  id int [pk]
+  date date
+  home_team text
+  away_team text
+  home_score int
+  away_score int
+  tournament int
+  city int [ref: > city.id]
+  country int
+  neutral boolean
+  winner text
+  pair text
+  Away text
+  x text
+}
+
+Table teams {
+  id int [pk, ref: < results.home_team]
+  team text
+}
+
+Table tournaments {
+  id int [pk, ref: < results.tournament]
+  tournament text
+}
+
+Table countries{
+  id int [pk, ref:< results.country]
+  country text
+}
+Table teams_a_filter {
+  id int [pk]
+  team text
+}
+
+Table teams_b_filter {
+  id int [pk]
+  team text
+}
+
+Table dax {
+  "Draw%" method
+  "Draw%_A" method
+  "Draw%_B" method
+  "FilteredGames" method
+  "FilteredGames_A" method
+  "FilteredGames_B" method
+  "Loss%_A" method
+  "Loss%_B" method
+  "W%_A" method
+  "W%_B" method
+  "Win%_A" method
+  "Win%_B" method
+}
